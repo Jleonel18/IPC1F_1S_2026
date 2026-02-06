@@ -56,7 +56,7 @@ git config --global credential.helper store
 Este paso se hace una sola vez.
 
 ```bash
-gitclone https://github.com/usuario/repositorio.git
+git clone https://github.com/usuario/repositorio.git
 ```
 
 Entrar a la carpeta:
