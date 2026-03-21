@@ -18,6 +18,7 @@ public class PersonajeController {
     public void agregarPersonajesQuemados(){
         PersonajeModel harry = new PersonajeModel();
         PersonajeModel draco = new PersonajeModel();
+        PersonajeModel ron = new PersonajeModel();
         
         EscobaModel nimbus2000 = new EscobaModel();
         EscobaModel nimbus2001 = new EscobaModel();
@@ -41,8 +42,14 @@ public class PersonajeController {
         draco.setEscoba(nimbus2001);
         draco.setNombre("Draco Malfoy");
         
+        ron.setIdPersonaje(3);
+        ron.setCasa(Casa.GRYFFINDOR);
+        ron.setEscoba(nimbus2001);
+        ron.setNombre("Ron Whisley");
+        
         personajes[0] = harry;
         personajes[1] = draco;
+        personajes[2] = ron;
     }
     
 }

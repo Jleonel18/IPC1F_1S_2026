@@ -5,6 +5,13 @@
 package ejemplohilos;
 
 import static ejemplohilos.PersonajeController.personajes;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -33,6 +40,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnIniciar = new javax.swing.JButton();
         lblMago1 = new javax.swing.JLabel();
         lblMago = new javax.swing.JLabel();
+        btnGraficar = new javax.swing.JButton();
+        pnlGrafica = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,17 +58,39 @@ public class VistaPrincipal extends javax.swing.JFrame {
         lblMago.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         lblMago.setText("🧙🏼‍♂️");
 
+        btnGraficar.setText("Graficar");
+        btnGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlGraficaLayout = new javax.swing.GroupLayout(pnlGrafica);
+        pnlGrafica.setLayout(pnlGraficaLayout);
+        pnlGraficaLayout.setHorizontalGroup(
+            pnlGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+        pnlGraficaLayout.setVerticalGroup(
+            pnlGraficaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(293, Short.MAX_VALUE)
+                .addContainerGap(295, Short.MAX_VALUE)
                 .addComponent(btnIniciar)
-                .addGap(262, 262, 262))
+                .addGap(26, 26, 26)
+                .addComponent(btnGraficar)
+                .addGap(158, 158, 158))
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(lblMago1)
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMago1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -70,16 +101,20 @@ public class VistaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
+                .addGap(137, 137, 137)
                 .addComponent(lblMago1)
-                .addGap(46, 46, 46)
-                .addComponent(btnIniciar)
+                .addGap(44, 44, 44)
+                .addComponent(pnlGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciar)
+                    .addComponent(btnGraficar))
                 .addGap(16, 16, 16))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(62, 62, 62)
                     .addComponent(lblMago)
-                    .addContainerGap(199, Short.MAX_VALUE)))
+                    .addContainerGap(489, Short.MAX_VALUE)))
         );
 
         pack();
@@ -164,6 +199,43 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnIniciarActionPerformed
 
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+        PartidaController pController = new PartidaController();
+        String[][] datos = pController.datosGraficaPersonaje();
+        
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        
+        for(int i=0; i<datos.length; i++){
+            String nombre = datos[i][0];
+            int puntos = Integer.parseInt(datos[i][1]);
+            
+            dataset.setValue(puntos, "Punteo Total", nombre);
+        }
+        
+        JFreeChart grafica = ChartFactory.createBarChart(
+                "Ranking de jugadores",
+                "Jugadores",
+                "Punteo total",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+        
+        ChartPanel panel = new ChartPanel(grafica);
+        
+        panel.setMouseWheelEnabled(true);
+        panel.setPreferredSize(new Dimension(540,288));
+        
+        pnlGrafica.removeAll();
+        pnlGrafica.setLayout(new BorderLayout());
+        pnlGrafica.add(panel, BorderLayout.CENTER);
+        pnlGrafica.revalidate();
+        pnlGrafica.repaint();
+        
+    }//GEN-LAST:event_btnGraficarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -190,8 +262,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGraficar;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JLabel lblMago;
     private javax.swing.JLabel lblMago1;
+    private javax.swing.JPanel pnlGrafica;
     // End of variables declaration//GEN-END:variables
 }

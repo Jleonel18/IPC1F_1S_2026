@@ -14,8 +14,11 @@ public class EjemploHilos {
         
         PersonajeController control = new PersonajeController();
         PersonajeController control2 = new PersonajeController(1);
+        PartidaController pController = new PartidaController();
         
         control.agregarPersonajesQuemados();
+        pController.agregarPartidasQuemadas();
+
         
         VistaPrincipal vPrincipal = new VistaPrincipal();
         vPrincipal.setVisible(true);
