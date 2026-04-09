@@ -2,13 +2,15 @@
 package com.mycompany.ejemploproyecto2.abstracto;
 
 import com.mycompany.ejemploproyecto2.utils.Rol;
+import java.io.Serializable;
 
 /**
  *
  * @author leonel
  */
-public class Usuario {
+public class Usuario implements Serializable{
     
+    private static final long serialVersionUID = 1L;
     private String codigo;
     private String password;
     private Rol rol;

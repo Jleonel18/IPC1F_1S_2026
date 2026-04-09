@@ -19,6 +19,10 @@ public class Estudiante extends Usuario{
     
     public Estudiante(String nombre, String apellido, Date fechaNacimiento, Genero genero,String codigo, String password, Rol rol, boolean online) {
         super(codigo, password, rol, online);
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.genero = genero;
     }
 
     public String getNombre() {
