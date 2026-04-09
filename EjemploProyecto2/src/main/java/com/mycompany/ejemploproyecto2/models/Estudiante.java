@@ -13,14 +13,12 @@ import java.util.Date;
 public class Estudiante extends Usuario{
     
     private String nombre;
-    private String apellido;
     private Date fechaNacimiento;
     private Genero genero;
     
-    public Estudiante(String nombre, String apellido, Date fechaNacimiento, Genero genero,String codigo, String password, Rol rol, boolean online) {
+    public Estudiante(String nombre, Date fechaNacimiento, Genero genero,String codigo, String password, Rol rol, boolean online) {
         super(codigo, password, rol, online);
         this.nombre = nombre;
-        this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
     }
@@ -31,14 +29,6 @@ public class Estudiante extends Usuario{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public Date getFechaNacimiento() {

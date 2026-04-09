@@ -1,0 +1,21 @@
+Codigo,NombreCurso,Descripcion,Creditos,seccion
+MA10234,Matematica I,Introduccion al algebra y funciones,5,A
+FI84521,Fisica I,Conceptos basicos de mecanica,5,B
+PR56789,Programacion I,Fundamentos de programacion en Java,4,A
+BD33421,Bases de Datos,Modelo relacional y SQL,4,B
+RE99812,Redes I,Conceptos basicos de redes de computadoras,4,A
+ES22345,Estructuras de Datos,Manejo de listas pilas y colas,5,C
+SO77890,Sistemas Operativos,Procesos y administracion de memoria,4,B
+IN55678,Ingenieria de Software,Ciclo de vida del software,4,A
+CA11223,Calculo I,Limites y derivadas,5,C
+PR44556,Programacion II,Programacion orientada a objetos,5,B
+BD77881,Bases de Datos II,Procedimientos almacenados y triggers,4,A
+RE99001,Redes II,Protocolos avanzados de red,4,C
+ES66778,Estructuras Avanzadas,Arboles y grafos,5,B
+SO33445,Sistemas Distribuidos,Conceptos de sistemas distribuidos,4,A
+IN88990,Ingenieria de Requisitos,Levantamiento y analisis de requisitos,3,C
+CA55661,Calculo II,Integrales y aplicaciones,5,B
+FI22334,Fisica II,Electricidad y magnetismo,5,A
+MA77882,Matematica Discreta,Logica y teoria de conjuntos,4,C
+PR99012,Programacion Web,Desarrollo de aplicaciones web,4,B
+BD11234,Big Data,Procesamiento de grandes volumenes de datos,4,A
