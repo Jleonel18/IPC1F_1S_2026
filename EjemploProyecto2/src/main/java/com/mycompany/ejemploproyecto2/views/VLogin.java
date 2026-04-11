@@ -4,7 +4,10 @@
  */
 package com.mycompany.ejemploproyecto2.views;
 
+import com.mycompany.ejemploproyecto2.abstracto.Usuario;
 import com.mycompany.ejemploproyecto2.controllers.UsuarioController;
+import com.mycompany.ejemploproyecto2.utils.Rol;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,6 +59,11 @@ public class VLogin extends javax.swing.JFrame {
         jLabel3.setText("Contraseña");
 
         btnLogin.setText("Inicia Sesión");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("¿No tienes Cuenta?");
 
@@ -140,6 +148,38 @@ public class VLogin extends javax.swing.JFrame {
         u.listarUsuarios();
         
     }//GEN-LAST:event_btnListarUsuariosActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        if(this.txtCodigo.getText().equals("admin") && this.txtPassword.getText().equals("1234")){
+            JOptionPane.showMessageDialog(this, "Bienvenido administrador");
+            UsuarioController.usuarioActivo = new Usuario("admin", "1234", Rol.ADMINISTRADOR, true, null);
+
+            VAdmin v = new VAdmin();
+            v.setVisible(true);
+            this.setVisible(false);
+            return;
+        }
+        
+        UsuarioController uController = new UsuarioController();
+        UsuarioController.usuarioActivo = uController.loginPorRol(this.txtCodigo.getText(), this.txtPassword.getText());
+        
+        if(UsuarioController.usuarioActivo == null){
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas.");
+
+        }else{
+            JOptionPane.showMessageDialog(this, "Bienvenido: "+UsuarioController.usuarioActivo.getCodigo());
+            switch(UsuarioController.usuarioActivo.getRol()){
+                case ESTUDIANTE:
+                    VAdmin v= new VAdmin();
+                    v.setVisible(true);
+                    this.setVisible(false);
+                    break;
+                default:
+                    System.out.println("Rol no soportado");
+                    break;
+            }
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments

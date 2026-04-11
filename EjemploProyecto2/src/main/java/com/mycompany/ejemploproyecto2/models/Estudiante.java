@@ -16,8 +16,8 @@ public class Estudiante extends Usuario{
     private Date fechaNacimiento;
     private Genero genero;
     
-    public Estudiante(String nombre, Date fechaNacimiento, Genero genero,String codigo, String password, Rol rol, boolean online) {
-        super(codigo, password, rol, online);
+    public Estudiante(String nombre, Date fechaNacimiento, Genero genero,String codigo, String password, Rol rol, boolean online, Date ultimaConexion) {
+        super(codigo, password, rol, online, ultimaConexion);
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;

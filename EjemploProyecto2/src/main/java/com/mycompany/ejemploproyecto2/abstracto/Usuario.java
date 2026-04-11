@@ -3,6 +3,7 @@ package com.mycompany.ejemploproyecto2.abstracto;
 
 import com.mycompany.ejemploproyecto2.utils.Rol;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -15,12 +16,22 @@ public class Usuario implements Serializable{
     private String password;
     private Rol rol;
     private boolean online;
+    private Date ultimaConexion;
 
-    public Usuario(String codigo, String password, Rol rol, boolean online) {
+    public Usuario(String codigo, String password, Rol rol, boolean online, Date ultimaConexion) {
         this.codigo = codigo;
         this.password = password;
         this.rol = rol;
         this.online = online;
+        this.ultimaConexion = ultimaConexion;
+    }
+
+    public Date getUltimaConexion() {
+        return ultimaConexion;
+    }
+
+    public void setUltimaConexion(Date ultimaConexion) {
+        this.ultimaConexion = ultimaConexion;
     }
 
     public String getCodigo() {
@@ -52,7 +63,11 @@ public class Usuario implements Serializable{
     }
 
     public void setOnline(boolean online) {
-        this.online = online;
+        this.online  = online;
+        if(!online){
+            Date horaActualizada = new Date();
+            setUltimaConexion(horaActualizada);
+        }
     }
     
     

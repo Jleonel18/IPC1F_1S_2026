@@ -19,6 +19,7 @@ public class UsuarioController {
     private static Usuario[] usuarios = new Usuario[100];
     private static int contadorUsuarios = 0;
     private static final String NOMBRE_ARCHIVO = "estudiantes.ser";
+    public static Usuario usuarioActivo = null;
 
     public UsuarioController(){
         cargarUsuarios();
@@ -99,7 +100,8 @@ public class UsuarioController {
                         codigo,
                         password,
                         rol,
-                        false
+                        false,
+                        null
                 );
                 break;
 
@@ -258,4 +260,37 @@ public class UsuarioController {
             System.out.println("Usuario No. "+(i+1)+":"+usuarios[i].getCodigo());
         }
     }
+    
+    public Usuario loginPorRol(String codigo, String password){
+        if(codigo==null || password == null){
+            return null;
+        }
+        
+        for(Usuario u:usuarios){
+            if(u==null) continue;
+            if(u.getCodigo().equals(codigo) && u.getPassword().equals(password)){
+                u.setOnline(true);
+                guardarUsuarios();
+                return u;
+            }
+        }
+        
+        return null;
+    }
+    
+    public void logout(Usuario usuario){
+        if(usuario == null){
+            return;
+        }
+        
+        cargarUsuarios();
+        for(int i=0; i<contadorUsuarios; i++){
+            if(usuarios[i] != null && usuarios[i].getCodigo().equals(usuario.getCodigo())){
+                usuarios[i].setOnline(false);
+                guardarUsuarios();
+                return;
+            }
+        }
+    }
+    
 }
